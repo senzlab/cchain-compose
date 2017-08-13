@@ -19,3 +19,5 @@ zchain:
         - CASSANDRA_KEYSPACE=zchain
     volumes:
         ['/tmp/services/zchain/logs:/app/logs:rw', '/tmp/services/zchain/keys:/app/.keys:rw']
+    links:
+        - cassandra
