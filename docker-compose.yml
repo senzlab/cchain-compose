@@ -2,7 +2,7 @@ cassandra:
     image: erangaeb/cassandra:0.4
     container_name: cassandra
     environment:
-        - CASSANDRA_BROADCAST_ADDRESS=10.4.1.14
+        - CASSANDRA_BROADCAST_ADDRESS=10.4.1.91
         - CASSANDRA_SEEDS=10.4.1.15
     ports:
         - 7000:7000
@@ -14,10 +14,16 @@ zchain:
     container_name: zchain
     environment:
         - SENZIE_NAME=sampath
-        - CASSANDRA_HOST=10.4.1.15
+        - CASSANDRA_HOST=10.4.1.91
         - CASSANDRA_PORT=9042
         - CASSANDRA_KEYSPACE=zchain
     volumes:
         ['/tmp/services/zchain/logs:/app/logs:rw', '/tmp/services/zchain/keys:/app/.keys:rw']
-    links:
-        - cassandra
+
+web:
+    image: hpcal1/blockchainweb:0.4
+    container_name: web
+    environment:
+        - h1=10.4.1.91
+    ports:
+        - 3000:3000
