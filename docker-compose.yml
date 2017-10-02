@@ -2,79 +2,48 @@ mongodb:
     image: erangaeb/senzmongodb:0.1
     container_name: senzmongodb
     volumes:
-        ['/private/var/services/mongodb:/data/db']
+        ['$MONGO_DATA_DIR:/data/db']
     ports:
         - 27017:27017
 
+
 switch:
-    image: erangaeb/senzswitch:0.56
+    image: erangaeb/senzswitch:0.57
     container_name: senzswitch
     ports:
         - 7070:7070
     environment:
-        - MONGO_HOST=mongodb
-        - SWITCH_MODE=DEV
+        - MONGO_HOST=${MONGO_HOST}
+        - SWITCH_MODE=${SWITCH_MODE}
     volumes:
-        ['/private/var/services/switch/logs:/app/logs:rw', '/private/var/services/switch/keys:/app/.keys:rw']
+        ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys']
     links:
         - mongodb
 
-dashboard:
-    image: hpcal1/senziesdashboard:0.3
-    container_name: dashboard
-    ports:
-        - 4000:4000
-    environment:
-        - MONGO_HOST=mongodb
-        - MONGO_DB=senz
-    links:
-        - mongodb
 
 cassandra:
-    image: erangaeb/cassandra:0.4
+    image: erangaeb/cassandra:0.5
     container_name: cassandra
     environment:
-        - CASSANDRA_BROADCAST_ADDRESS=10.4.1.95
-        - CASSANDRA_SEEDS=10.4.1.95
+        - CASSANDRA_BROADCAST_ADDRESS=${CASSANDRA_BROADCAST_ADDRESS}
+        - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     ports:
         - 7000:7000
         - 9042:9042
         - 9060:9060
 
-zchain:
-    image: erangaeb/zchain:0.3
-    container_name: zchain
+
+cchain:
+    image: erangaeb/cchain:0.1
+    container_name: cchain
     environment:
-        - SENZIE_NAME=boc
-        - CASSANDRA_HOST=10.4.1.95
-        - CASSANDRA_PORT=9042
-        - CASSANDRA_KEYSPACE=zchain
-        - SWITCH_HOST=switch
-        - SWITCH_PORT=7070
+        - SENZIE_NAME=${SENZIE_NAME}
+        - CASSANDRA_HOST=${CASSANDRA_HOST}
+        - CASSANDRA_PORT=${CASSANDRA_PORT}
+        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
+        - SWITCH_HOST=${SWITCH_HOST}
+        - SWITCH_PORT=${SWITCH_PORT}
     volumes:
-        ['/private/var/services/zchain/logs:/app/logs:rw', '/private/var/services/zchain/keys:/app/.keys:rw']
+        ['$CCHAIN_LOGS_DIR:/app/logs', '$CCHAIN_KEYS_DIR:/app/.keys']
     links:
         - switch
-
-zchain2:
-    image: erangaeb/zchain:0.3
-    container_name: zchain2
-    environment:
-        - SENZIE_NAME=hnb
-        - CASSANDRA_HOST=10.4.1.95
-        - CASSANDRA_PORT=9042
-        - CASSANDRA_KEYSPACE=zchain
-        - SWITCH_HOST=switch
-        - SWITCH_PORT=7070
-    volumes:
-        ['/private/var/services/zchain2/logs:/app/logs:rw', '/private/var/services/zchain2/keys:/app/.keys:rw']
-    links:
-        - switch
-
-web:
-    image: hpcal1/blockchainweb:0.6
-    container_name: web
-    environment:
-        - h1=10.4.1.95
-    ports:
-        - 3000:3000
