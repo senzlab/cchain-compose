@@ -34,7 +34,7 @@ cassandra:
 
 
 cchain:
-    image: erangaeb/cchain:0.1
+    image: erangaeb/cchain:0.3
     container_name: cchain
     environment:
         - SENZIE_NAME=${SENZIE_NAME}
