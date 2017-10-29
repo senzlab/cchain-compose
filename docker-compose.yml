@@ -8,7 +8,7 @@ mongodb:
 
 
 switch:
-    image: erangaeb/senzswitch:0.57
+    image: erangaeb/senzswitch:0.58
     container_name: senzswitch
     ports:
         - 7070:7070
@@ -34,7 +34,7 @@ cassandra:
 
 
 cchain:
-    image: erangaeb/cchain:0.3
+    image: erangaeb/cchain:0.4
     container_name: cchain
     environment:
         - SENZIE_NAME=${SENZIE_NAME}
@@ -47,3 +47,12 @@ cchain:
         ['$CCHAIN_LOGS_DIR:/app/logs', '$CCHAIN_KEYS_DIR:/app/.keys']
     links:
         - switch
+
+
+web:
+    image: hpcal1/blockchainweb:0.7
+    container_name: web
+    environment:
+        - h1=${CASSANDRA_HOST}
+    ports:
+        - 3000:3000
