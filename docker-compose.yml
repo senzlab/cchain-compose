@@ -34,7 +34,7 @@ cassandra:
 
 
 cchain:
-    image: erangaeb/cchain:0.7
+    image: erangaeb/cchain:0.8
     container_name: cchain
     environment:
         - SENZIE_NAME=${SENZIE_NAME}
@@ -50,9 +50,10 @@ cchain:
 
 
 web:
-    image: hpcal1/blockchainweb:0.7
+    image: hpcal1/blockchainweb:0.9
     container_name: web
     environment:
         - h1=${CASSANDRA_HOST}
+        - APP_TYPE=${APP_TYPE}
     ports:
         - 3000:3000
