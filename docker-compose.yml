@@ -50,7 +50,7 @@ cchain:
 
 
 web:
-    image: hpcal1/blockchainweb:0.9
+    image: hpcal1/blockchainweb:0.10
     container_name: web
     environment:
         - h1=${CASSANDRA_HOST}
