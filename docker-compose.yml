@@ -50,10 +50,10 @@ cchain:
 
 
 web:
-    image: hpcal1/blockchainweb:0.10
+    image: hpcal1/blockchainweb:0.11
     container_name: web
     environment:
         - h1=${CASSANDRA_HOST}
         - APP_TYPE=${APP_TYPE}
     ports:
-        - 3000:3000
+        - 80:3000
