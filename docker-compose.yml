@@ -45,8 +45,6 @@ cchain:
         - SWITCH_PORT=${SWITCH_PORT}
     volumes:
         ['$CCHAIN_LOGS_DIR:/app/logs', '$CCHAIN_KEYS_DIR:/app/.keys']
-    links:
-        - switch
 
 
 web:
