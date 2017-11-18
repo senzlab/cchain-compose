@@ -49,7 +49,7 @@ cchain:
 
 cminer:
     image: erangaeb/cminer:0.1
-    container_name: cchain
+    container_name: cminer
     environment:
         - MINER_NAME=${MINER_NAME}
         - CASSANDRA_HOST=${CASSANDRA_HOST}
