@@ -37,7 +37,7 @@ cchain:
     image: erangaeb/cchain:0.9
     container_name: cchain
     environment:
-        - SENZIE_NAME=${BANK_NAME}
+        - BANK_NAME=${BANK_NAME}
         - CASSANDRA_HOST=${CASSANDRA_HOST}
         - CASSANDRA_PORT=${CASSANDRA_PORT}
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
@@ -51,7 +51,7 @@ cminer:
     image: erangaeb/cminer:0.1
     container_name: cchain
     environment:
-        - SENZIE_NAME=${MINER_NAME}
+        - MINER_NAME=${MINER_NAME}
         - CASSANDRA_HOST=${CASSANDRA_HOST}
         - CASSANDRA_PORT=${CASSANDRA_PORT}
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
