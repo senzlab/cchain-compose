@@ -28,7 +28,7 @@ cassandra:
         - CASSANDRA_BROADCAST_ADDRESS=${CASSANDRA_BROADCAST_ADDRESS}
         - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     volumes:
-        ['$CASSANDRA_DATA_DIR:/var/lib/cassandra']
+        ['$CASSANDRA_DATA_DIR:/opt/cassandra/data']
     ports:
         - 7000:7000
         - 9042:9042
