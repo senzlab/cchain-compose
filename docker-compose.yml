@@ -11,7 +11,7 @@ switch:
     image: erangaeb/senzswitch:0.59
     container_name: senzswitch
     ports:
-        - 7070:7070
+        - 3000:7070
     environment:
         - MONGO_HOST=${MONGO_HOST}
         - SWITCH_MODE=${SWITCH_MODE}
@@ -36,7 +36,7 @@ cassandra:
 
 
 cchain:
-    image: erangaeb/cchain:0.10
+    image: erangaeb/cchain:0.11
     container_name: cchain
     environment:
         - BANK_NAME=${BANK_NAME}
@@ -47,6 +47,8 @@ cchain:
         - SWITCH_PORT=${SWITCH_PORT}
     volumes:
         ['$CCHAIN_LOGS_DIR:/app/logs', '$CCHAIN_KEYS_DIR:/app/.keys']
+    ports:
+        - 5005:5005
 
 
 cminer:
