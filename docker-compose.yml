@@ -52,7 +52,7 @@ cchain:
 
 
 cminer:
-    image: erangaeb/cminer:0.2
+    image: erangaeb/cminer:0.3
     container_name: cminer
     environment:
         - MINER_NAME=${MINER_NAME}
