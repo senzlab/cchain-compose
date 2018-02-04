@@ -36,10 +36,10 @@ cassandra:
 
 
 cchain:
-    image: erangaeb/cchain:0.11
+    image: erangaeb/goc:0.1
     container_name: cchain
     environment:
-        - BANK_NAME=${BANK_NAME}
+        - SENZIE_NAME=${CCHAIN_NAME}
         - CASSANDRA_HOST=${CASSANDRA_HOST}
         - CASSANDRA_PORT=${CASSANDRA_PORT}
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
@@ -52,10 +52,10 @@ cchain:
 
 
 cminer:
-    image: erangaeb/cminer:0.3
+    image: erangaeb/cminer:0.4
     container_name: cminer
     environment:
-        - MINER_NAME=${MINER_NAME}
+        - SENZIE_NAME=${CMINER_NAME}
         - CASSANDRA_HOST=${CASSANDRA_HOST}
         - CASSANDRA_PORT=${CASSANDRA_PORT}
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
@@ -63,6 +63,20 @@ cminer:
         - SWITCH_PORT=${SWITCH_PORT}
     volumes:
         ['$CMINER_LOGS_DIR:/app/logs', '$CMINER_KEYS_DIR:/app/.keys']
+
+
+authz:
+    image: erangaeb/authz:0.1
+    container_name: authz
+    environment:
+        - SENZIE_NAME=${AUTHZ_NAME}
+        - CASSANDRA_HOST=${CASSANDRA_HOST}
+        - CASSANDRA_PORT=${CASSANDRA_PORT}
+        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
+        - SWITCH_HOST=${SWITCH_HOST}
+        - SWITCH_PORT=${SWITCH_PORT}
+    volumes:
+        ['$AUTHZ_LOGS_DIR:/app/logs', '$AUTHZ_KEYS_DIR:/app/.keys']
 
 
 web:
