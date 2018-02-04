@@ -35,18 +35,18 @@ cassandra:
         - 9060:9060
 
 
-cchain:
-    image: erangaeb/goc:0.1
-    container_name: cchain
+chainz:
+    image: erangaeb/chainz:0.1
+    container_name: chainz
     environment:
-        - SENZIE_NAME=${CCHAIN_NAME}
+        - SENZIE_NAME=${CHAINZ_NAME}
         - CASSANDRA_HOST=${CASSANDRA_HOST}
         - CASSANDRA_PORT=${CASSANDRA_PORT}
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
         - SWITCH_HOST=${SWITCH_HOST}
         - SWITCH_PORT=${SWITCH_PORT}
     volumes:
-        ['$CCHAIN_LOGS_DIR:/app/logs', '$CCHAIN_KEYS_DIR:/app/.keys']
+        ['$CHAINZ_LOGS_DIR:/app/logs', '$CHAINZ_KEYS_DIR:/app/.keys']
     ports:
         - 5005:5005
 
