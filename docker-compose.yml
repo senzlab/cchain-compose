@@ -7,11 +7,11 @@ mongodb:
         - 27017:27017
 
 
-switch:
-    image: erangaeb/senzswitch:0.59
-    container_name: senzswitch
+zwitch:
+    image: erangaeb/zwitch:1.0
+    container_name: zwitch
     ports:
-        - 3000:7070
+        - 7070:7070
     environment:
         - MONGO_HOST=${MONGO_HOST}
         - SWITCH_MODE=${SWITCH_MODE}
