@@ -52,7 +52,7 @@ chainz:
 
 
 cminer:
-    image: erangaeb/cminer:0.4
+    image: erangaeb/cminer:0.5
     container_name: cminer
     environment:
         - SENZIE_NAME=${CMINER_NAME}
