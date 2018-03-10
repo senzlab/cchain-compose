@@ -36,7 +36,7 @@ cassandra:
 
 
 chainz:
-    image: erangaeb/chainz:0.2
+    image: erangaeb/chainz:0.5
     container_name: chainz
     environment:
         - SENZIE_NAME=${CHAINZ_NAME}
@@ -52,7 +52,7 @@ chainz:
 
 
 cminer:
-    image: erangaeb/cminer:0.5
+    image: erangaeb/cminer:0.6
     container_name: cminer
     environment:
         - SENZIE_NAME=${CMINER_NAME}
@@ -66,7 +66,7 @@ cminer:
 
 
 authz:
-    image: erangaeb/authz:0.2
+    image: erangaeb/authz:0.3
     container_name: authz
     environment:
         - SENZIE_NAME=${AUTHZ_NAME}
@@ -90,3 +90,14 @@ web:
         - APP_TYPE=${APP_TYPE}
     ports:
         - 80:3000
+
+
+webz:
+    image: maurakirinathan/sampath:v1
+    container_name: webz
+    environment:
+        - CASSANDRA_HOST=${CASSANDRA_HOST}
+        - CASSANDRA_PORT=${CASSANDRA_PORT}
+        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
+    ports:
+        - 8081:8081
