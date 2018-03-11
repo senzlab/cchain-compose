@@ -36,7 +36,7 @@ cassandra:
 
 
 chainz:
-    image: erangaeb/chainz:0.5
+    image: erangaeb/chainz:0.6
     container_name: chainz
     environment:
         - SENZIE_NAME=${CHAINZ_NAME}
@@ -52,7 +52,7 @@ chainz:
 
 
 cminer:
-    image: erangaeb/cminer:0.6
+    image: erangaeb/cminer:0.7
     container_name: cminer
     environment:
         - SENZIE_NAME=${CMINER_NAME}
