@@ -8,17 +8,20 @@ mongodb:
 
 
 zwitch:
-    image: erangaeb/zwitch:1.0
+    image: erangaeb/zwitch:2.2
     container_name: zwitch
     ports:
-        - 7070:7070
+        - 7171:7171
     environment:
         - MONGO_HOST=${MONGO_HOST}
         - SWITCH_MODE=${SWITCH_MODE}
+        - CHAINZ_HOST=${CHAINZ_HOST}
+        - CHAINZ_PORT=${CHAINZ_PORT}
     volumes:
         ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys']
     links:
         - mongodb
+        - chainz
 
 
 cassandra:
@@ -36,7 +39,7 @@ cassandra:
 
 
 chainz:
-    image: erangaeb/chainz:0.6
+    image: erangaeb/chainz:0.7
     container_name: chainz
     environment:
         - SENZIE_NAME=${CHAINZ_NAME}
@@ -45,10 +48,14 @@ chainz:
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
         - SWITCH_HOST=${SWITCH_HOST}
         - SWITCH_PORT=${SWITCH_PORT}
+        - TRANS_API=${TRANS_API}
+        - TRANS_ACTION=${TRANS_ACTION}
+        - TRANS_ACCOUNT=${TRANS_ACCOUNT}
     volumes:
         ['$CHAINZ_LOGS_DIR:/app/logs', '$CHAINZ_KEYS_DIR:/app/.keys']
     ports:
         - 5005:5005
+        - 7070:7070
 
 
 cminer:
