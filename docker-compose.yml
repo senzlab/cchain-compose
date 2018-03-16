@@ -17,7 +17,7 @@ zwitch:
         - SWITCH_MODE=${SWITCH_MODE}
         - CHAINZ_API=${CHAINZ_API}
     volumes:
-        ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys', '$ZWITCH_CERTS_DIR:/app/.cert']
+        ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys', '$ZWITCH_CERTS_DIR:/app/.certs']
     links:
         - mongodb
         - chainz
