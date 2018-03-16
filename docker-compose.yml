@@ -18,7 +18,7 @@ zwitch:
         - CHAINZ_HOST=${CHAINZ_HOST}
         - CHAINZ_PORT=${CHAINZ_PORT}
     volumes:
-        ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys']
+        ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys', '$ZWITCH_CERTS_DIR:/app/.cert']
     links:
         - mongodb
         - chainz
@@ -100,7 +100,7 @@ web:
 
 
 webz:
-    image: maurakirinathan/sampath:v1
+    image: maurakirinathan/sampth_newui:v1
     container_name: webz
     environment:
         - CASSANDRA_HOST=${CASSANDRA_HOST}
@@ -108,3 +108,15 @@ webz:
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
     ports:
         - 8081:8081
+
+
+nginx:
+    image: erangaeb/senznginx:1.0
+    container_name: nginx
+    ports:
+        - 80:80
+        - 8443:8443
+    volumes:
+        ['$NGINX_CERTS_DIR:/etc/nginx/certs']
+    links:
+        - chainz
