@@ -15,8 +15,7 @@ zwitch:
     environment:
         - MONGO_HOST=${MONGO_HOST}
         - SWITCH_MODE=${SWITCH_MODE}
-        - CHAINZ_HOST=${CHAINZ_HOST}
-        - CHAINZ_PORT=${CHAINZ_PORT}
+        - CHAINZ_API=${CHAINZ_API}
     volumes:
         ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys', '$ZWITCH_CERTS_DIR:/app/.cert']
     links:
