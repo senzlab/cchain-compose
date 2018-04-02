@@ -92,7 +92,7 @@ authz:
 
 
 webz:
-    image: maurakirinathan/sampth_newui:v2
+    image: maurakirinathan/webz:1.2
     container_name: webz
     environment:
         - CASSANDRA_HOST=${CASSANDRA_HOST}
