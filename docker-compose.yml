@@ -8,7 +8,7 @@ mongodb:
 
 
 zwitch:
-    image: erangaeb/zwitch:2.2
+    image: erangaeb/zwitch:2.3
     container_name: zwitch
     ports:
         - 7171:7171
