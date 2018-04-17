@@ -40,7 +40,7 @@ cassandra:
 
 
 chainz:
-    image: erangaeb/chainz:0.7
+    image: erangaeb/chainz:0.9
     container_name: chainz
     environment:
         - SENZIE_NAME=${CHAINZ_NAME}
