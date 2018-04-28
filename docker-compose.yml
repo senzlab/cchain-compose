@@ -73,23 +73,6 @@ cminer:
         ['$CMINER_LOGS_DIR:/app/logs', '$CMINER_KEYS_DIR:/app/.keys']
 
 
-authz:
-    image: erangaeb/authz:0.3
-    container_name: authz
-    environment:
-        - SENZIE_NAME=${AUTHZ_NAME}
-        - SENZIE_MODE=${AUTHZ_MODE}
-        - CASSANDRA_HOST=${CASSANDRA_HOST}
-        - CASSANDRA_PORT=${CASSANDRA_PORT}
-        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
-        - SWITCH_HOST=${SWITCH_HOST}
-        - SWITCH_PORT=${SWITCH_PORT}
-    volumes:
-        ['$AUTHZ_LOGS_DIR:/app/logs', '$AUTHZ_KEYS_DIR:/app/.keys']
-    ports:
-        - 5105:5005
-
-
 webz:
     image: maurakirinathan/webz:2.4
     container_name: webz
