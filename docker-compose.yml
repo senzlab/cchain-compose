@@ -8,7 +8,7 @@ mongodb:
 
 
 zwitch:
-    image: erangaeb/zwitch:2.3
+    image: erangaeb/zwitch:2.4
     container_name: zwitch
     ports:
         - 7171:7171
@@ -16,7 +16,6 @@ zwitch:
         - MONGO_HOST=${MONGO_HOST}
         - SWITCH_MODE=${SWITCH_MODE}
         - CHAINZ_NAME=${CHAINZ_NAME}
-        - CHAINZ_KEY=${CHAINZ_KEY}
         - PROMIZE_API=${PROMIZE_API}
         - UZER_API=${UZER_API}
     volumes:
@@ -35,12 +34,32 @@ cassandra:
         ['$CASSANDRA_DATA_DIR:/opt/cassandra/data']
     ports:
         - 7000:7000
+        - 7001:7001
+        - 7199:7199
         - 9042:9042
-        - 9060:9060
+        - 9160:9160
+
+
+elassandra:
+    image: erangaeb/elassandra:2.0
+    container_name: elassandra
+    environment:
+        - CASSANDRA_BROADCAST_ADDRESS=${CASSANDRA_BROADCAST_ADDRESS}
+        - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
+    volumes:
+        ['$CASSANDRA_DATA_DIR:/opt/cassandra/data']
+    ports:
+        - 7000:7000
+        - 7001:7001
+        - 7199:7199
+        - 9042:9042
+        - 9160:9160
+        - 9200:9200
+        - 9300:9300
 
 
 chainz:
-    image: erangaeb/chainz:1.0
+    image: erangaeb/chainz:1.1
     container_name: chainz
     environment:
         - SENZIE_NAME=${CHAINZ_NAME}
@@ -60,7 +79,7 @@ chainz:
 
 
 cminer:
-    image: erangaeb/cminer:0.7
+    image: erangaeb/cminer:0.9
     container_name: cminer
     environment:
         - SENZIE_NAME=${CMINER_NAME}
@@ -74,14 +93,14 @@ cminer:
 
 
 webz:
-    image: maurakirinathan/webz:2.4
+    image: maurakirinathan/webz:3.4
     container_name: webz
     environment:
         - CASSANDRA_HOST=${CASSANDRA_HOST}
         - CASSANDRA_PORT=${CASSANDRA_PORT}
         - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
     ports:
-        - 8081:8082
+        - 81:8082
 
 
 nginx:
