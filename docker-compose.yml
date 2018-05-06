@@ -93,7 +93,7 @@ cminer:
 
 
 webz:
-    image: maurakirinathan/webz:3.4
+    image: maurakirinathan/webz:3.7
     container_name: webz
     environment:
         - CASSANDRA_HOST=${CASSANDRA_HOST}
