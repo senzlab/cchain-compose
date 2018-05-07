@@ -1,6 +1,6 @@
 mongodb:
     image: erangaeb/senzmongodb:0.1
-    container_name: senzmongodb
+    container_name: mongodb
     volumes:
         ['$MONGO_DATA_DIR:/data/db']
     ports:
