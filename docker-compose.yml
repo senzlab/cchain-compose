@@ -8,7 +8,7 @@ mongodb:
 
 
 zwitch:
-    image: erangaeb/zwitch:2.4
+    image: erangaeb/zwitch:2.6
     container_name: zwitch
     ports:
         - 7171:7171
@@ -18,6 +18,10 @@ zwitch:
         - CHAINZ_NAME=${CHAINZ_NAME}
         - PROMIZE_API=${PROMIZE_API}
         - UZER_API=${UZER_API}
+        - FCM_ANDROID_API=${FCM_API}
+        - FCM_SERVER_KEY=${FCM_SERVER_KEY}
+        - APN_API=${APN_API}
+        - APN_TOPIC=${APN_TOPIC}
     volumes:
         ['$SWITCH_LOGS_DIR:/app/logs', '$SWITCH_KEYS_DIR:/app/.keys', '$ZWITCH_CERTS_DIR:/app/.certs']
     links:
@@ -59,7 +63,7 @@ elassandra:
 
 
 chainz:
-    image: erangaeb/chainz:1.1
+    image: erangaeb/chainz:1.2
     container_name: chainz
     environment:
         - SENZIE_NAME=${CHAINZ_NAME}
