@@ -83,6 +83,34 @@ chainz:
         - 7070:7070
 
 
+promz1:
+    image: erangaeb/promz:1.0
+    container_name: promz1
+    environment:
+        - SENZIE_NAME=${CHAINZ_NAME}
+        - CASSANDRA_HOST=${CASSANDRA_HOST}
+        - CASSANDRA_PORT=${CASSANDRA_PORT}
+        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
+
+promz2:
+    image: erangaeb/promz:1.0
+    container_name: promz2
+    environment:
+        - SENZIE_NAME=${CHAINZ_NAME}
+        - CASSANDRA_HOST=${CASSANDRA_HOST}
+        - CASSANDRA_PORT=${CASSANDRA_PORT}
+        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
+
+promz3:
+    image: erangaeb/promz:1.0
+    container_name: promz3
+    environment:
+        - SENZIE_NAME=${CHAINZ_NAME}
+        - CASSANDRA_HOST=${CASSANDRA_HOST}
+        - CASSANDRA_PORT=${CASSANDRA_PORT}
+        - CASSANDRA_KEYSPACE=${CASSANDRA_KEYSPACE}
+
+
 cminer:
     image: erangaeb/cminer:0.9
     container_name: cminer
